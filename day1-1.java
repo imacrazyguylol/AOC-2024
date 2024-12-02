@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Arrays;
 
-class Main {
+class day1_1 {
     public static void main(String[] aaa) throws Exception {
         BufferedReader in = new BufferedReader( new FileReader( new File("inputs/day1") ) );
 
