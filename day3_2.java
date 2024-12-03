@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 // This is the worst thing I have ever programmed in my entire life, and I hope it stays that way
+// Part 1 took ??? 
+// Part 2 completed at ~1:50AM EST
 class day3_2 {
     static final Pattern mul = Pattern.compile("mul\\([0-9]+,[0-9]+\\)");
     static final Pattern Do = Pattern.compile("do\\(\\)");
