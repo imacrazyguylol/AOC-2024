@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
 
 class Main {
     public static void main(String[] aaa) throws Exception {
@@ -11,10 +10,12 @@ class Main {
         int[] right = new int[1000];
         String line;
         while ((line = in.readLine()) != null) {
+            // parsing inputs
             String[] split = line.split("   ");
             int leftInt  = Integer.parseInt(split[0]);
             int rightInt = Integer.parseInt(split[1]);
 
+            // sorts inputs into arrays
             int i = 0;
             while (i < 1000 && leftInt < left[i]) {i++;}
 
@@ -24,6 +25,7 @@ class Main {
                 leftInt = temp;
             }
 
+            // exact same thing for right
             i = 0;
             while (i < 1000 && rightInt < right[i]) i++;
 
@@ -36,6 +38,7 @@ class Main {
 
         int sum = 0;
 
+        // difference between each left and right value, sum it all up
         for (int i = 0; i < 1000; i++) {
             sum += Math.abs(right[i] - left[i]);
         }
