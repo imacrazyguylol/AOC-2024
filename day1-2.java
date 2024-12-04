@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-class asdasfds {
+class day1_2 {
     public static void main(String[] aaa) throws Exception {
         BufferedReader in = new BufferedReader(new FileReader(new File("inputs/day1")));
 
