@@ -10,7 +10,7 @@ class OptDay3 {
 
     public static void main(String[] aaa) throws Exception {
         BufferedReader in = new BufferedReader(new FileReader(new File("inputs/day3")));
-        String line = "don't()".concat("do()").concat(in.readLine()); // this is fucking stupid
+        String line = in.readLine();
 
         int sum = 0;
         Matcher m = p.matcher(line);
