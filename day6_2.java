@@ -1,21 +1,18 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 class day6_2 {
-    public static final int size = 130;
+    public static final int size = 10;
     public static void main(String[] aaa) throws Exception{
-        BufferedReader in = new BufferedReader(new FileReader(new File("inputs/day6")));
+        BufferedReader in = new BufferedReader(new FileReader(new File("inputs/day6test")));
         String line;
         Guard guard = new Guard(0, 0, null, false);
 
         int i = 0;
-        char[][] map = new char[day6_2.size][day6_2.size];
+        char[][] temp = new char[day6_2.size][day6_2.size];
         while ((line = in.readLine()) != null) {
             char[] row = line.toCharArray();
 
@@ -26,17 +23,27 @@ class day6_2 {
                 }
             }
 
-            map[i] = row;
+            temp[i] = row;
             i++;
         }
 
+        final char[][] map = temp.clone();
+
         while (!guard.complete) {
-            map = guard.travel(map);
+            guard.travel(map);
         }
 
         System.out.println("\n");
-
-        System.out.println("FINAL VALUE: " + guard.numLoops);
+        int sum = 0;
+        for (int[] row : guard.obstacles) {
+            for (int x : row) {
+                System.out.print(x);
+                sum += x;
+            }
+            System.out.println();
+        }
+        System.out.println("\nFINAL VALUE: " + sum);
+        
     }
 }
 
@@ -92,8 +99,8 @@ class Guard {
 
     protected boolean isLooper = false;
     protected boolean loops = false;
-    protected int numLoops = 0;
     protected Set<int[]> touchedTurns = new HashSet<>(); // X, Y, 0 = U | 1 = R | 2 = D | 3 = L
+    protected int[][] obstacles = new int[day6_2.size][day6_2.size];
 
 
     public Guard(int startingX, int startingY, Dir startingDir, boolean isLooper) {
@@ -104,12 +111,9 @@ class Guard {
         this.startingX = startingX;
         this.startingY = startingY;
         this.isLooper = isLooper;
-
-/*         touchedXTurns.add(startingX);
-        touchedYTurns.add(startingY); */
     }
 
-    public char[][] travel(char[][] map) { // returns map with X's in all of the positions that it has traveled
+    public char[][] travel(char[][] map) {
         int[] increment = new int[] {0, 0}; // X, Y
         switch (facing) {
             case U: 
@@ -128,28 +132,32 @@ class Guard {
 
         while (map[Y + increment[1]][X + increment[0]] != '#') { // check if next char where facing is obstacle
             if (!isLooper) {
-                char[][] temp = map;
-                temp[Y + increment[1]][X + increment[0]] = '#';
+                map[Y + increment[1]][X + increment[0]] = '#';
 
                 Guard looper = new Guard(X, Y, facing, true);
-                System.out.println("\n\nStarting coords of looper: " + looper.startingX + ", " + looper.startingY);
+                // System.out.println("\n\nStarting coords of looper: " + looper.startingX + ", " + looper.startingY);
                 // System.out.println("looper facing " + looper.facing);
                 // System.out.println("numLoops: " + numLoops);
 
                 while (!looper.complete) {
-                    System.out.println("hit obstacle\n\nlooper facing: " + looper.facing);
-                    System.out.println("coord: " + looper.X + ", " + looper.Y);
+                    // System.out.println("hit obstacle\n\nlooper facing: " + looper.facing);
+                    // System.out.println("coord: " + looper.X + ", " + looper.Y);
 
-                    temp = looper.travel(temp);
+                    map = looper.travel(map);
                     if (looper.loops) {
-                        this.numLoops++;
+                        if (X + increment[0] != startingX || Y + increment[1] != startingY) {
+                            System.out.printf("\nLooped with obstacle placed at: %s, %s starting from guard position %s, %s facing '%s'%n", X + increment[0], Y + increment[1], X, Y, facing);
+                            obstacles[Y + increment[1]][X + increment[0]] = 1;
+                        }
+
+                        System.out.println("Looper ended at position: " + looper.X + ", " + looper.Y + "");
                         break;
                     }
                     // System.out.println("looper complete: " + looper.complete);
                 }
             }
 
-            map[Y][X] = 'X';
+            if (isLooper) map[Y][X] = facing.name().toCharArray()[0];
             Y += increment[1];
             X += increment[0];
             
@@ -162,13 +170,10 @@ class Guard {
                 return map;
             }
         }
+
         touchedTurns.add(new int[] {X, Y, facing.number(facing)});
         facing = facing.turn(facing);
-        /* if (isLooper) {
-            startingX = X;
-            startingY = Y;
-        } */
-
+        
         return map;
     }
 
@@ -178,6 +183,4 @@ class Guard {
         }
         return false;
     }
-
-    
 }
