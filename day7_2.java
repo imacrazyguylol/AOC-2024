@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Arrays;
 
 class day7_2 extends Extra {
     public static void main(String[] aaa) throws Exception {
@@ -14,10 +13,10 @@ class day7_2 extends Extra {
             long y = Long.parseLong(params[0]);
             long[] x = Extra.parseLongs(params[1], " ");
 
-            System.out.println(line);
+            // System.out.println(line);
 
             sum += testOperators(y, x.length - 1, x) ? y : 0;
-            System.out.println();
+            // System.out.println();
         }
 
         System.out.println(sum);
@@ -29,8 +28,8 @@ class day7_2 extends Extra {
         }
         if (n == 0) {
             if (y == x[0]) {
-                System.out.println("Complete");
-                System.out.println( y + " " + x[n] + " " + Arrays.toString(x) + " - Valid: " + (y == x[0]) + "\n" );
+                // System.out.println("Complete");
+                // System.out.println( y + " " + x[n] + " " + Arrays.toString(x) + " - Valid: " + (y == x[0]) + "\n" );
                 return true;
             } else {
                 return false;
@@ -44,12 +43,10 @@ class day7_2 extends Extra {
             // if (ydigits > xnDigits) System.out.println( String.valueOf(y).substring( ydigits - xnDigits ) );
 
             String deConcat = ydigits > xnDigits && Long.parseLong( String.valueOf(y).substring(ydigits - xnDigits) ) == x[n] ? String.valueOf(y).substring( 0, (ydigits - xnDigits) ) : "";
-            System.out.println( y + " " + x[n] + " " + deConcat );
+            // System.out.println( y + " " + x[n] + " " + deConcat );
 
             double div = (double) y / (double) x[n];
             boolean bruh = true;
-            System.out.println(div);
-            System.out.println();
             if (div % 1 != 0) { // ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????? why does it only work here im kms
                 bruh = false;
             }
