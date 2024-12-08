@@ -118,9 +118,5 @@ class Guard {
         facing = facing.turn(facing);
 
         return map;
-    }
-
-    public Dir getFacing() {
-        return facing;
-    }  
+    } 
 }
