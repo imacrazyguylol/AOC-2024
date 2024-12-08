@@ -41,16 +41,16 @@ class day8_2 {
             // System.out.println(c + "|" + l.toString());
 
             for (i = 0; i < l.size(); i++) {
-                int[] d1 = l.get(i);
+                int[] n1 = l.get(i);
 
-                int x1 = d1[0];
-                int y1 = d1[1];
+                int x1 = n1[0];
+                int y1 = n1[1];
 
                 for (int j = i + 1; j < l.size(); j++) {
-                    int[] d2 = l.get(j);
+                    int[] n2 = l.get(j);
 
-                    int x2 = d2[0];
-                    int y2 = d2[1];
+                    int x2 = n2[0];
+                    int y2 = n2[1];
 
                     int m = 0; // =0 to get the initial nodees as well
                     int[] an1 = new int[] { // a node
