@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Extra {
     public static int[] parseInts(String line, String delimiter) {
         String[] temp = line.split(delimiter);

@@ -62,6 +62,7 @@ class day8_2 {
                             System.out.printf(
                                     "multiplier: %s | node 1: %s, %s | node 2: %s, %s | antinote (A direction): %s\n",
                                     m, x1, y1, x2, y2, Arrays.toString(an1));
+
                             grid[an1[1]][an1[0]] = '#';
                             sum++;
                         }
@@ -84,6 +85,7 @@ class day8_2 {
                             System.out.printf(
                                     "multiplier: %d | node 1: %d, %d | node 2: %d, %d | antinote (B direction): %s\n",
                                     m, x1, y1, x2, y2, Arrays.toString(an2));
+                          
                             grid[an2[1]][an2[0]] = '#';
                             sum++;
                         }

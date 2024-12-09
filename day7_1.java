@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 class day7_1 extends Extra {
     public static void main(String[] aaa) throws Exception {
-        BufferedReader in = new BufferedReader(new FileReader( new File("inputs/day7")));
+        BufferedReader in = new BufferedReader(new FileReader( new File("inputs/willsday7")));
         String line;
         long sum = 0;
 
