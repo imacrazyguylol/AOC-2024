@@ -8,9 +8,9 @@ public class Extra {
         return out;
     }
 
-    public static long[] parseLongs(String line, String delimiter) {
+    public static Long[] parseLongs(String line, String delimiter) {
         String[] temp = line.split(delimiter);
-        long[] out = new long[temp.length];
+        Long[] out = new Long[temp.length];
         for (int i = 0; i < temp.length; i++) {
             out[i] = Long.parseLong(temp[i]);
         }
