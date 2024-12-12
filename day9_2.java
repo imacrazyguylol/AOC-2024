@@ -129,9 +129,7 @@ class FileBlock {
         this.size = block.length;
     }
 
-    public int size() {
-        return size;
-    }
+    public int size() { return size; }
 
     // enforce that a fileblock must always have the same value across the array
     // -1 if it's empty
@@ -151,9 +149,11 @@ class FileBlock {
 
         int[] temp1 = new int[index];
         int[] temp2 = new int[size() - index];
+
         for (int i = 0; i < temp1.length; i++) {
             temp1[i] = val();
         }
+        
         for (int i = 0; i < temp2.length; i++) {
             temp2[i] = val();
         }
@@ -169,9 +169,7 @@ class FileBlock {
         return sum;
     }
 
-    public String toString() {
-        return Arrays.toString(block);
-    }
+    public String toString() { return Arrays.toString(block); }
 
     // size is sumofarray(diskmap)
     public static String stringify(Vector<FileBlock> fileSystem, int size) {

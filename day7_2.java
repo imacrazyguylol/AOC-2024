@@ -4,7 +4,7 @@ import java.io.FileReader;
 
 class day7_2 extends Extra {
     public static void main(String[] aaa) throws Exception {
-        BufferedReader in = new BufferedReader(new FileReader( new File("inputs/day7")));
+        BufferedReader in = new BufferedReader(new FileReader(new File("inputs/day7")));
         String line;
         long sum = 0;
 
@@ -29,24 +29,29 @@ class day7_2 extends Extra {
         if (n == 0) {
             if (y == x[0]) {
                 // System.out.println("Complete");
-                // System.out.println( y + " " + x[n] + " " + Arrays.toString(x) + " - Valid: " + (y == x[0]) + "\n" );
+                // System.out.println( y + " " + x[n] + " " + Arrays.toString(x) + " - Valid: "
+                // + (y == x[0]) + "\n" );
                 return true;
             } else {
                 return false;
             }
         } else {
-            int ydigits =  ( String.valueOf(y) ).length();
-            int xnDigits = ( String.valueOf(x[n]) ).length();
-            // System.out.printf( "y: %s, digits: %s; x[n]: %s, digits: %s\n", 
+            int ydigits = (String.valueOf(y)).length();
+            int xnDigits = (String.valueOf(x[n])).length();
+            // System.out.printf( "y: %s, digits: %s; x[n]: %s, digits: %s\n",
             // String.valueOf(y), ydigits, x[n], xnDigits );
 
-            // if (ydigits > xnDigits) System.out.println( String.valueOf(y).substring( ydigits - xnDigits ) );
+            // if (ydigits > xnDigits) System.out.println( String.valueOf(y).substring(
+            // ydigits - xnDigits ) );
 
-            String deConcat = ydigits > xnDigits && Long.parseLong( String.valueOf(y).substring(ydigits - xnDigits) ) == x[n] ? String.valueOf(y).substring( 0, (ydigits - xnDigits) ) : "";
+            String deConcat = ydigits > xnDigits
+                    && Long.parseLong(String.valueOf(y).substring(ydigits - xnDigits)) == x[n]
+                            ? String.valueOf(y).substring(0, (ydigits - xnDigits))
+                            : "";
             // System.out.println( y + " " + x[n] + " " + deConcat );
 
-            return testOperators( y - x[n], n - 1, x ) || ( y % x[n] == 0 ? testOperators( y / x[n], n - 1, x ) : false ) || ( n != 0 && !deConcat.isEmpty() ? testOperators( Long.parseLong( deConcat ), n - 1, x ) : false );
+            return testOperators(y - x[n], n - 1, x) || (y % x[n] == 0 ? testOperators(y / x[n], n - 1, x) : false)
+                    || (n != 0 && !deConcat.isEmpty() ? testOperators(Long.parseLong(deConcat), n - 1, x) : false);
         }
     }
 }
-
