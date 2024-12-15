@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
-class day11_2 extends Extra {
+class day11_2 {
     static Map<Long, long[]> memo = new HashMap<>();
     static Map<Long, Long> numInstances = new HashMap<>();
     public static void main(String[] args) throws Exception {
