@@ -34,7 +34,8 @@ class day14_2 {
             grid[r.y][r.x]++;
         }
 
-        while (!isChristmasTree(robots)) {
+        int i = 0;
+        while (!isChristmasTree()) {
             // printRobots(robots);
             for (Robot r : robots) {
                 r.move();
@@ -44,10 +45,12 @@ class day14_2 {
             for (Robot r : robots) {
                 grid[r.y][r.x]++;
             }
+            i++;
         }
 
         printRobots(robots);
-        System.out.println(robots.toString());
+        System.out.println(i);
+        // System.out.println(robots.toString());
     }
 
     static void printRobots(List<Robot> robots) {
@@ -58,9 +61,54 @@ class day14_2 {
         System.out.println();
     }
 
-    // moving 3x3 sum across grid, if result contains any 9+, return true
-    static boolean isChristmasTree(List<Robot> robots) {
-        return true;
+    // moving 5x5 sum across grid, if result contains any 20+, return true
+    static boolean isChristmasTree() {
+        for (int i = 2; i < sizeY - 2; i++) {
+            for (int j = 2; j < sizeX - 2; j++) {
+                int[] square = new int[] {
+                        grid[i - 2][j - 2],
+                        grid[i - 2][j - 1],
+                        grid[i - 2][j],
+                        grid[i - 2][j + 1],
+                        grid[i - 2][j + 2],
+
+                        grid[i - 1][j - 2],
+                        grid[i - 1][j - 1],
+                        grid[i - 1][j],
+                        grid[i - 1][j + 1],
+                        grid[i - 1][j + 2],
+
+                        grid[i][j - 2],
+                        grid[i][j - 1],
+                        grid[i][j],
+                        grid[i][j + 1],
+                        grid[i][j + 2],
+
+                        grid[i + 1][j - 2],
+                        grid[i + 1][j - 1],
+                        grid[i + 1][j],
+                        grid[i + 1][j - 1],
+                        grid[i + 1][j + 2],
+
+                        grid[i + 2][j - 2],
+                        grid[i + 2][j - 1],
+                        grid[i + 2][j],
+                        grid[i + 2][j - 1],
+                        grid[i + 2][j + 2]
+                };
+
+                int sum = 0;
+                for (int x : square) {
+                    sum += x;
+                }
+
+                if (sum >= 20) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     static void resetGrid() {
