@@ -12,7 +12,7 @@ class day7_1 extends Extra {
         while ((line = in.readLine()) != null) {
             String[] params = line.split(": ");
             double y = Double.parseDouble(params[0]);
-            long[] x = Extra.parseLongs(params[1], " ");
+            Long[] x = Extra.parseLongs(params[1], " ");
 
             sum += testOperators(y, x.length - 1, x) ? y : 0;
         }
@@ -20,7 +20,7 @@ class day7_1 extends Extra {
         System.out.println(sum);
     }
 
-    public static boolean testOperators(double y, int n, long[] x) {
+    public static boolean testOperators(double y, int n, Long[] x) {
         if (n == 0) {
             if (y == x[0]) {
                 System.out.println(Arrays.toString(x));
