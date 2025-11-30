@@ -51,6 +51,7 @@ class day13_1 {
             this.yB = yB;
         }
 
+        // linear algebra lol
         public double[] calculatePresses() {
             double a, b;
             double denominator = ((xA * yB) - (xB * yA));
